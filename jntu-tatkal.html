@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Listing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            background: #f1f3f6;
+            padding: 20px;
+        }
+
+        .sort-bar {
+            background: white;
+            padding: 12px 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .sort-bar span {
+            color: #212121;
+            margin-right: 15px;
+        }
+
+        .sort-options {
+            display: inline-flex;
+            gap: 24px;
+        }
+
+        .sort-option {
+            color: #212121;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .sort-option.active {
+            color: #2874f0;
+            font-weight: 500;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 4px;
+            padding: 15px;
+            position: relative;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .wishlist-btn {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #c2c2c2;
+            font-size: 20px;
+        }
+
+        .product-image {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .sponsored {
+            color: #878787;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        .product-title {
+            color: #212121;
+            font-size: 14px;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .product-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .rating {
+            background: #388e3c;
+            color: white;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-size: 12px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .rating::after {
+            content: "★";
+            margin-left: 2px;
+        }
+
+        .review-count {
+            color: #878787;
+            font-size: 12px;
+        }
+
+        .assured-badge {
+            height: 20px;
+        }
+
+        .price-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .current-price {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .original-price {
+            color: #878787;
+            text-decoration: line-through;
+            font-size: 14px;
+        }
+
+        .discount {
+            color: #388e3c;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .bank-offer {
+            color: #388e3c;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .bestseller {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #00a699;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+
+        .color-variants {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .color-variant {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 1px solid #e0e0e0;
+        }
+
+        .compare-checkbox {
+            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #212121;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sort-bar">
+        <span>Sort By</span>
+        <div class="sort-options">
+            <a href="#" class="sort-option active">departments</a>
+            <a href="#" class="sort-option">banks</a>
+            <a href="#" class="sort-option">libraries</a>
+            <a href="#" class="sort-option">hostels</a>
+            <a href="#" class="sort-option">activity centres</a>
+        </div>
+    </div>
+
+    <div class="product-grid">
+        <!-- Product Card 1 -->
+        <div class="product-card">
+            <button class="wishlist-btn">♡</button>
+            <div class="product-image">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-13%20183913-kUY98gXqhbSCf7m0FGouTzLVHDucsZ.png" alt="Mivi DuoPods">
+            </div>
+            <div class="sponsored">Sponsored</div>
+            <div class="product-title">CSE block</div>
+
+
+            <div class="bank-offer">Bank Offer</div>
+
+            <label class="compare-checkbox">
+                <input type="checkbox"> Add to Compare
+            </label>
+        </div>
+
+        <!-- Product Card 2 -->
+        <div class="product-card">
+            <button class="wishlist-btn">♡</button>
+            <div class="product-image">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-13%20183913-kUY98gXqhbSCf7m0FGouTzLVHDucsZ.png" alt="TRIGGR Ultrabuds">
+            </div>
+            <div class="sponsored">Sponsored</div>
+            <div class="product-title">ECE block</div>
+            <div class="product-meta">
+                <span class="rating">4</span>
+                <span class="review-count">(39,034)</span>
+                <img class="assured-badge" src="data:image/svg+xml,%3Csvg width='77' height='20' viewBox='0 0 77 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M76.5 10C76.5 15.2467 72.2467 19.5 67 19.5H10C4.75329 19.5 0.5 15.2467 0.5 10C0.5 4.75329 4.75329 0.5 10 0.5H67C72.2467 0.5 76.5 4.75329 76.5 10Z' fill='%23FFFFFF' stroke='%23002E6E'/%3E%3Cpath d='M28.5 5L32.5 9L28.5 13' stroke='%23002E6E' stroke-width='1.5'/%3E%3Ctext x='38' y='14' font-family='Arial' font-size='12' fill='%23002E6E'%3EAssured%3C/text%3E%3C/svg%3E" alt="Assured">
+            </div>
+
+            <div class="bank-offer">Bank Offer</div>
+        </div>
+
+        <!-- Product Card 3 -->
+        <div class="product-card">
+            <button class="wishlist-btn">♡</button>
+            <div class="bestseller">Bestseller</div>
+            <div class="product-image">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-13%20183913-kUY98gXqhbSCf7m0FGouTzLVHDucsZ.png" alt="Boult W10">
+            </div>
+            <div class="product-title">CRC building</div>
+            <div class="product-meta">
+                <span class="rating">4</span>
+                <span class="review-count">(11,318)</span>
+            </div>
+
+            <div class="bank-offer">Bank Offer</div>
+        </div>
+
+        <!-- Product Card 4 -->
+        <div class="product-card">
+            <button class="wishlist-btn">♡</button>
+            <div class="product-image">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-13%20183913-kUY98gXqhbSCf7m0FGouTzLVHDucsZ.png" alt="boAt Airdopes">
+            </div>
+            <div class="product-title">spandana building</div>
+            <div class="product-meta">
+                <span class="rating">4</span>
+                <span class="review-count">(12,37,060)</span>
+                <img class="assured-badge" src="data:image/svg+xml,%3Csvg width='77' height='20' viewBox='0 0 77 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M76.5 10C76.5 15.2467 72.2467 19.5 67 19.5H10C4.75329 19.5 0.5 15.2467 0.5 10C0.5 4.75329 4.75329 0.5 10 0.5H67C72.2467 0.5 76.5 4.75329 76.5 10Z' fill='%23FFFFFF' stroke='%23002E6E'/%3E%3Cpath d='M28.5 5L32.5 9L28.5 13' stroke='%23002E6E' stroke-width='1.5'/%3E%3Ctext x='38' y='14' font-family='Arial' font-size='12' fill='%23002E6E'%3EAssured%3C/text%3E%3C/svg%3E" alt="Assured">
+            </div>
+
+            <div class="bank-offer">Bank Offer</div>
+        </div>
+        <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary text-black w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:bg-opacity-90 ">
+            <i class="ri-arrow-up-line ri-lg"></i>
+        </button>
+    </div>
+
+    <script>
+        // Add click handlers for sort options
+        document.querySelectorAll('.sort-option').forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.querySelector('.sort-option.active').classList.remove('active');
+                option.classList.add('active');
+            });
+        });
+
+        // Add click handlers for wishlist buttons
+        document.querySelectorAll('.wishlist-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.textContent = btn.textContent === '♡' ? '♥' : '♡';
+            });
+        });
+    </script>
+</body>
+</html>
