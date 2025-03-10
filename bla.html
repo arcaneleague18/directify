@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JNTUH tatkal </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8B4513',
+                        secondary: '#D2B48C'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            min-width: 18px;
+            height: 18px;
+            border-radius: 9999px;
+            background-color: #8B4513;
+            color: white;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .newsletter-input:focus {
+            outline: none;
+            border-color: #8B4513;
+        }
+        .quick-view {
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .product-card:hover .quick-view {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-white min-h-screen">
+
+    <nav class="fixed top-0 w-full bg-white shadow-sm z-40">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-8">
+                    <a href="#" class="font-['stencil'] text-2xl text-primary">JNTUH</a>
+                    <div class="hidden md:flex space-x-8">
+                        <a href="#" class="text-gray-700 hover:text-primary">Home</a>
+                        <a href="#" class="text-gray-700 hover:text-primary">Categories</a>
+                        <a href="#" class="text-gray-700 hover:text-primary">New Arrivals</a>
+                        <a href="#" class="text-gray-700 hover:text-primary">Sale</a>
+                        <a href="#" class="text-gray-700 hover:text-primary">About Us</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-16">
+        <section class="relative h-[600px] bg-cover bg-center" style="background-image: url('https://public.readdy.ai/ai/img_res/177ad04762084586b3967dfd0bcaedc6.jpg')">
+            <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+            <div class="relative max-w-7xl mx-auto px-4 h-full flex items-center">
+                <div class="max-w-xl text-white">
+                    <h1 class="text-5xl font-bold mb-6">Transform Your Space</h1>
+                    <p class="text-xl mb-8">Discover our curated collection of premium furniture designed to elevate your home.</p>
+                    <input type="text" placeholder="From" class="w-36 px-2 py-2 !rounded-button bg-gray-50 focus:outline-none focus:ring-1 focus:ring-primary text-sm">
+                    <p style="display: inline;">to</p>
+                    <input type="text" placeholder="To" class="w-36 px-2 py-2 !rounded-button bg-gray-50 focus:outline-none focus:ring-1 focus:ring-primary text-sm">
+                    <button class="bg-primary text-white px-8 py-3 !rounded-button hover:bg-opacity-90 whitespace-nowrap">
+                        Search
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12">Shop by Category</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                    <div class="category-card relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                        <img src="https://public.readdy.ai/ai/img_res/e703b6392d99fdd6a605189f99fb2728.jpg" alt="Living Room" class="w-full h-64 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <div class="text-center">
+                                <h3 class="text-white text-xl font-semibold mb-2">Living Room</h3>
+                                <button class="text-white border border-white px-4 py-2 !rounded-button hover:bg-white hover:text-gray-900 transition-colors whitespace-nowrap">
+                                    View Collection
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                        <img src="https://public.readdy.ai/ai/img_res/0fa2af8d29920de53181ff07ee169a03.jpg" alt="Bedroom" class="w-full h-64 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <div class="text-center">
+                                <h3 class="text-white text-xl font-semibold mb-2">Bedroom</h3>
+                                <button class="text-white border border-white px-4 py-2 !rounded-button hover:bg-white hover:text-gray-900 transition-colors whitespace-nowrap">
+                                    View Collection
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                        <img src="https://public.readdy.ai/ai/img_res/cec0528a8c02fe406681a5229ba508e9.jpg" alt="Dining" class="w-full h-64 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <div class="text-center">
+                                <h3 class="text-white text-xl font-semibold mb-2">Dining</h3>
+                                <button class="text-white border border-white px-4 py-2 !rounded-button hover:bg-white hover:text-gray-900 transition-colors whitespace-nowrap">
+                                    View Collection
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                        <img src="https://public.readdy.ai/ai/img_res/96d0ef2dccb0159e80f57ab93b987914.jpg" alt="Office" class="w-full h-64 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <div class="text-center">
+                                <h3 class="text-white text-xl font-semibold mb-2">Office</h3>
+                                <button class="text-white border border-white px-4 py-2 !rounded-button hover:bg-white hover:text-gray-900 transition-colors whitespace-nowrap">
+                                    View Collection
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                        <img src="https://public.readdy.ai/ai/img_res/ccb81ee6b844aed1892079b29534e28c.jpg" alt="Outdoor" class="w-full h-64 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <div class="text-center">
+                                <h3 class="text-white text-xl font-semibold mb-2">Outdoor</h3>
+                                <button class="text-white border border-white px-4 py-2 !rounded-button hover:bg-white hover:text-gray-900 transition-colors whitespace-nowrap">
+                                    View Collection
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="flex justify-between items-center mb-8">
+                    <h2 class="text-3xl font-bold">Featured Products</h2>
+                    <div class="flex space-x-4">
+                        <button class="px-4 py-2 !rounded-button bg-primary text-white hover:bg-opacity-90 whitespace-nowrap">
+                            All Products
+                        </button>
+                        <button class="px-4 py-2 !rounded-button border border-gray-300 hover:border-primary whitespace-nowrap">
+                            Best Sellers
+                        </button>
+                        <button class="px-4 py-2 !rounded-button border border-gray-300 hover:border-primary whitespace-nowrap">
+                            New Arrivals
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="relative">
+                            <img src="https://public.readdy.ai/ai/img_res/057d1538b9a3ceee9142950789ba447a.jpg" alt="Modern Sofa" class="w-full h-64 object-cover">
+                            <div class="quick-view absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                                <button class="bg-white text-gray-900 px-4 py-2 !rounded-button hover:bg-opacity-90 whitespace-nowrap">
+                                    Quick View
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold mb-2">Modern Comfort Sofa</h3>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold text-primary">$1,299</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="relative">
+                            <img src="https://public.readdy.ai/ai/img_res/4f8836a0b6769c53a719ece009977712.jpg" alt="Dining Set" class="w-full h-64 object-cover">
+                            <div class="quick-view absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                                <button class="bg-white text-gray-900 px-4 py-2 !rounded-button hover:bg-opacity-90 whitespace-nowrap">
+                                    Quick View
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold mb-2">Elegant Dining Set</h3>
+                            <div class="flex justify-between items-center">
+
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="relative">
+                            <img src="https://public.readdy.ai/ai/img_res/2b8392c900331dd86b2361cbf9fc12bf.jpg" alt="Bed Frame" class="w-full h-64 object-cover">
+                            <div class="quick-view absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                                <button class="bg-white text-gray-900 px-4 py-2 !rounded-button hover:bg-opacity-90 whitespace-nowrap">
+                                    Quick View
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold mb-2">Modern Bed Frame</h3>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold text-primary">$1,899</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="relative">
+                            <img src="https://public.readdy.ai/ai/img_res/ee05b0e1011514e4080e24760b0c8728.jpg" alt="Office Desk" class="w-full h-64 object-cover">
+                            <div class="quick-view absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                                <button class="bg-white text-gray-900 px-4 py-2 !rounded-button hover:bg-opacity-90 whitespace-nowrap">
+                                    Quick View
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold mb-2">Executive Office Desk</h3>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xl font-bold text-primary">$899</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 bg-primary text-white">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="text-center max-w-2xl mx-auto">
+                    <h2 class="text-3xl font-bold mb-4">Subscribe to Our Newsletter</h2>
+                    <p class="mb-8">Stay updated with our latest collections and exclusive offers.</p>
+                    <div class="flex max-w-md mx-auto">
+                        <input type="email" placeholder="Enter your email" class="flex-1 px-4 py-2 !rounded-l-button text-gray-900 newsletter-input">
+                        <button class="bg-gray-900 text-white px-6 py-2 !rounded-r-button hover:bg-opacity-90 whitespace-nowrap">
+                            Subscribe
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Returns</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Us</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-400">
+                            <i class="ri-map-pin-line mr-2"></i>
+                            123 Furniture St, Design City
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="ri-phone-line mr-2"></i>
+                            +1 234 567 890
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="ri-mail-line mr-2"></i>
+                            info@furniture.com
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-600 text-gray-400 hover:text-white hover:border-white">
+                            <i class="ri-facebook-fill"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-600 text-gray-400 hover:text-white hover:border-white">
+                            <i class="ri-instagram-line"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full border border-gray-600 text-gray-400 hover:text-white hover:border-white">
+                            <i class="ri-pinterest-line"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                        © 2025 Modern Furniture. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:bg-opacity-90 hidden">
+        <i class="ri-arrow-up-line ri-lg"></i>
+    </button>
+
+    <script>
+        let cart = [];
+        let cartTotal = 0;
+
+        function toggleCart() {
+            const modal = document.getElementById('cart-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItems = document.getElementById('cart-items');
+            const cartCount = document.getElementById('cart-count');
+            const cartTotal = document.getElementById('cart-total');
+            
+            cartItems.innerHTML = '';
+            let total = 0;
+            
+            cart.forEach((item, index) => {
+                total += item.price;
+                cartItems.innerHTML += `
+                    <div class="flex justify-between items-center">
+                        <span>${item.name}</span>
+                        <div class="flex items-center">
+                            <span class="mr-4">$${item.price}</span>
+                            <button onclick="removeFromCart(${index})" class="text-red-500">
+                                <i class="ri-delete-bin-line"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            cartCount.textContent = cart.length;
+            cartTotal.textContent = `$${total.toFixed(2)}`;
+        }
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        const backToTop = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.remove('hidden');
+            } else {
+                backToTop.classList.add('hidden');
+            }
+        });
+        
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
