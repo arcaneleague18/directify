@@ -3,300 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Listing</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <title>Modern Furniture</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-        }
-
-        body {
-            background: #f1f3f6;
-            padding: 20px;
-        }
-
-        .sort-bar {
-            background: white;
-            padding: 12px 20px;
-            margin-bottom: 20px;
-            border-radius: 4px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-
-        .sort-bar span {
-            color: #212121;
-            margin-right: 15px;
-        }
-
-        .sort-options {
-            display: inline-flex;
-            gap: 24px;
-        }
-
-        .sort-option {
-            color: #212121;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .sort-option.active {
-            color: #2874f0;
-            font-weight: 500;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 4px;
-            padding: 15px;
-            position: relative;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-
-        .wishlist-btn {
-            position: absolute;
-            right: 15px;
-            top: 15px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #c2c2c2;
-            font-size: 20px;
-        }
-
-        .product-image {
-            height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
-        }
-
-        .product-image img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-
-        .sponsored {
-            color: #878787;
-            font-size: 12px;
-            margin-bottom: 8px;
-        }
-
-        .product-title {
-            color: #212121;
-            font-size: 14px;
-            margin-bottom: 8px;
-            line-height: 1.4;
-        }
-
-        .product-meta {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 8px;
-        }
-
-        .rating {
-            background: #388e3c;
-            color: white;
-            padding: 2px 4px;
-            border-radius: 3px;
-            font-size: 12px;
-            display: inline-flex;
-            align-items: center;
-        }
-
-        .rating::after {
-            content: "★";
-            margin-left: 2px;
-        }
-
-        .review-count {
-            color: #878787;
-            font-size: 12px;
-        }
-
-        .assured-badge {
-            height: 20px;
-        }
-
-        .price-container {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 8px;
-        }
-
-        .current-price {
-            font-size: 16px;
-            font-weight: 500;
-        }
-
-        .original-price {
-            color: #878787;
-            text-decoration: line-through;
-            font-size: 14px;
-        }
-
-        .discount {
-            color: #388e3c;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .bank-offer {
-            color: #388e3c;
-            font-size: 14px;
-            margin-bottom: 8px;
-        }
-
-        .bestseller {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: #00a699;
-            color: white;
-            padding: 4px 8px;
-            border-radius: 3px;
-            font-size: 12px;
-        }
-
-        .color-variants {
-            display: flex;
-            gap: 8px;
-            margin-top: 12px;
-        }
-
-        .color-variant {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            border: 1px solid #e0e0e0;
-        }
-
-        .compare-checkbox {
-            margin-top: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #212121;
-            font-size: 14px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <div class="sort-bar">
-        <span>Sort By</span>
-        <div class="sort-options">
-            <a href="#" class="sort-option active">departments</a>
-            <a href="#" class="sort-option">banks</a>
-            <a href="#" class="sort-option">libraries</a>
-            <a href="#" class="sort-option">hostels</a>
-            <a href="#" class="sort-option">activity centres</a>
+<body class="font-sans bg-gray-100">
+    <!-- Header -->
+    <header class="bg-cover bg-center h-96" style="background-image: url('satv.png');">
+        <div class="container mx-auto px-4 py-8">
+            <nav class="flex justify-between items-center">
+                <div class="text-white text-2xl font-bold">JNTUH</div>
+                <ul class="flex space-x-6 text-white">
+                    <li><a href="#" class="hover:text-gray-300">Home</a></li>
+                    <li><a href="#" class="hover:text-gray-300">Categories</a></li>
+                    <li><a href="#" class="hover:text-gray-300">New Arrivals</a></li>
+                    <li><a href="#" class="hover:text-gray-300">Sale</a></li>
+                    <li><a href="#" class="hover:text-gray-300">About Us</a></li>
+                </ul>
+            </nav>
+            <div class="text-white text-center mt-20">
+                <h1 class="text-4xl font-bold">Transform Your Space</h1>
+                <p class="mt-2">Discover our curated collection of premium furniture designed to elevate your home.</p>
+            </div>
         </div>
-    </div>
+    </header>
 
-    <div class="product-grid">
-        <!-- Product Card 1 -->
-        <div class="product-card">
-            <button class="wishlist-btn">♡</button>
-            <div class="product-image">
-                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-13%20183913-kUY98gXqhbSCf7m0FGouTzLVHDucsZ.png" alt="Mivi DuoPods">
+    <!-- Shop by Category -->
+    <section class="container mx-auto px-4 py-12">
+        <h2 class="text-2xl font-bold text-center mb-8">Shop by Category</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-white p-4 rounded-lg shadow-lg text-center">
+                <img src="satv.png" alt="Living Room" class="mx-auto mb-4">
+                <h3 class="text-lg font-semibold">Living Room</h3>
+                <button class="mt-2 bg-orange-600 text-white px-4 py-2 rounded hover:bg-orange-700">View Collection</button>
             </div>
-            <div class="sponsored">Sponsored</div>
-            <div class="product-title">CSE block</div>
-
-
-            <div class="bank-offer">Bank Offer</div>
-
-            <label class="compare-checkbox">
-                <input type="checkbox"> Add to Compare
-            </label>
+            <div class="bg-white p-4 rounded-lg shadow-lg text-center">
+                <img src="satv.png" alt="Bedroom" class="mx-auto mb-4">
+                <h3 class="text-lg font-semibold">Bedroom</h3>
+                <button class="mt-2 bg-orange-600 text-white px-4 py-2 rounded hover:bg-orange-700">View Collection</button>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow-lg text-center">
+                <img src="satv.png" alt="Dining" class="mx-auto mb-4">
+                <h3 class="text-lg font-semibold">Dining</h3>
+                <button class="mt-2 bg-orange-600 text-white px-4 py-2 rounded hover:bg-orange-700">View Collection</button>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow-lg text-center">
+                <img src="satv.png" alt="Office" class="mx-auto mb-4">
+                <h3 class="text-lg font-semibold">Office</h3>
+                <button class="mt-2 bg-orange-600 text-white px-4 py-2 rounded hover:bg-orange-700">View Collection</button>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow-lg text-center">
+                <img src="satv.png" alt="Outdoor" class="mx-auto mb-4">
+                <h3 class="text-lg font-semibold">Outdoor</h3>
+                <button class="mt-2 bg-orange-600 text-white px-4 py-2 rounded hover:bg-orange-700">View Collection</button>
+            </div>
         </div>
+    </section>
 
-        <!-- Product Card 2 -->
-        <div class="product-card">
-            <button class="wishlist-btn">♡</button>
-            <div class="product-image">
-                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-13%20183913-kUY98gXqhbSCf7m0FGouTzLVHDucsZ.png" alt="TRIGGR Ultrabuds">
-            </div>
-            <div class="sponsored">Sponsored</div>
-            <div class="product-title">ECE block</div>
-            <div class="product-meta">
-                <span class="rating">4</span>
-                <span class="review-count">(39,034)</span>
-                <img class="assured-badge" src="data:image/svg+xml,%3Csvg width='77' height='20' viewBox='0 0 77 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M76.5 10C76.5 15.2467 72.2467 19.5 67 19.5H10C4.75329 19.5 0.5 15.2467 0.5 10C0.5 4.75329 4.75329 0.5 10 0.5H67C72.2467 0.5 76.5 4.75329 76.5 10Z' fill='%23FFFFFF' stroke='%23002E6E'/%3E%3Cpath d='M28.5 5L32.5 9L28.5 13' stroke='%23002E6E' stroke-width='1.5'/%3E%3Ctext x='38' y='14' font-family='Arial' font-size='12' fill='%23002E6E'%3EAssured%3C/text%3E%3C/svg%3E" alt="Assured">
-            </div>
-
-            <div class="bank-offer">Bank Offer</div>
+    <!-- Featured Products -->
+    <section class="container mx-auto px-4 py-12">
+        <h2 class="text-2xl font-bold text-center mb-8">Featured Products</h2>
+        <div class="flex justify-center mb-4">
+            <button class="mx-2 px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">All</button>
+            <button class="mx-2 px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Best Sellers</button>
+            <button class="mx-2 px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">New Arrivals</button>
         </div>
-
-        <!-- Product Card 3 -->
-        <div class="product-card">
-            <button class="wishlist-btn">♡</button>
-            <div class="bestseller">Bestseller</div>
-            <div class="product-image">
-                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-13%20183913-kUY98gXqhbSCf7m0FGouTzLVHDucsZ.png" alt="Boult W10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-white p-4 rounded-lg shadow-lg text-center">
+                <img src="satv.png" alt="Modern Comfort Sofa" class="mx-auto mb-4">
+                <h3 class="text-lg font-semibold">Modern Comfort Sofa</h3>
+                <p class="text-gray-600">$1,299</p>
             </div>
-            <div class="product-title">CRC building</div>
-            <div class="product-meta">
-                <span class="rating">4</span>
-                <span class="review-count">(11,318)</span>
+            <div class="bg-white p-4 rounded-lg shadow-lg text-center">
+                <img src="satv.png" alt="Elegant Dining Set" class="mx-auto mb-4">
+                <h3 class="text-lg font-semibold">Elegant Dining Set</h3>
+                <p class="text-gray-600">$1,899</p>
             </div>
-
-            <div class="bank-offer">Bank Offer</div>
+            <div class="bg-white p-4 rounded-lg shadow-lg text-center">
+                <img src="satv.png" alt="Modern Bed Frame" class="mx-auto mb-4">
+                <h3 class="text-lg font-semibold">Modern Bed Frame</h3>
+                <p class="text-gray-600">$1,299</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow-lg text-center">
+                <img src="satv.png" alt="Executive Office Desk" class="mx-auto mb-4">
+                <h3 class="text-lg font-semibold">Executive Office Desk</h3>
+                <p class="text-gray-600">$999</p>
+            </div>
         </div>
+    </section>
 
-        <!-- Product Card 4 -->
-        <div class="product-card">
-            <button class="wishlist-btn">♡</button>
-            <div class="product-image">
-                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-13%20183913-kUY98gXqhbSCf7m0FGouTzLVHDucsZ.png" alt="boAt Airdopes">
-            </div>
-            <div class="product-title">spandana building</div>
-            <div class="product-meta">
-                <span class="rating">4</span>
-                <span class="review-count">(12,37,060)</span>
-                <img class="assured-badge" src="data:image/svg+xml,%3Csvg width='77' height='20' viewBox='0 0 77 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M76.5 10C76.5 15.2467 72.2467 19.5 67 19.5H10C4.75329 19.5 0.5 15.2467 0.5 10C0.5 4.75329 4.75329 0.5 10 0.5H67C72.2467 0.5 76.5 4.75329 76.5 10Z' fill='%23FFFFFF' stroke='%23002E6E'/%3E%3Cpath d='M28.5 5L32.5 9L28.5 13' stroke='%23002E6E' stroke-width='1.5'/%3E%3Ctext x='38' y='14' font-family='Arial' font-size='12' fill='%23002E6E'%3EAssured%3C/text%3E%3C/svg%3E" alt="Assured">
-            </div>
-
-            <div class="bank-offer">Bank Offer</div>
+    <!-- Newsletter Subscription -->
+    <section class="bg-orange-800 text-white py-12 text-center">
+        <h2 class="text-2xl font-bold mb-4">Subscribe to Our Newsletter</h2>
+        <p class="mb-4">Stay updated with our latest collections and exclusive offers.</p>
+        <div class="flex justify-center">
+            <input type="email" placeholder="Enter your email" class="p-2 rounded-l-md">
+            <button class="bg-white text-orange-800 px-4 py-2 rounded-r-md hover:bg-gray-200">Subscribe</button>
         </div>
-        <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary text-black w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:bg-opacity-90 ">
-            <i class="ri-arrow-up-line ri-lg"></i>
-        </button>
-    </div>
+    </section>
 
-    <script>
-        // Add click handlers for sort options
-        document.querySelectorAll('.sort-option').forEach(option => {
-            option.addEventListener('click', (e) => {
-                e.preventDefault();
-                document.querySelector('.sort-option.active').classList.remove('active');
-                option.classList.add('active');
-            });
-        });
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="font-bold mb-2">Quick Links</h3>
+                    <ul>
+                        <li><a href="#" class="hover:text-gray-300">About Us</a></li>
+                        <li><a href="#" class="hover:text-gray-300">Contact</a></li>
+                        <li><a href="#" class="hover:text-gray-300">FAQ</a></li>
+                        <li><a href="#" class="hover:text-gray-300">Returns</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-2">Contact Us</h3>
+                    <p>123 Furniture St, Design City</p>
+                    <p>Call: +1 234 567 890</p>
+                    <p>Email: info@furniture.com</p>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-2">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-gray-300">Facebook</a>
+                        <a href="#" class="hover:text-gray-300">Twitter</a>
+                        <a href="#" class="hover:text-gray-300">Instagram</a>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center mt-8">&copy; 2025 Modern Furniture. All rights reserved.</p>
+        </div>
+    </footer>
 
-        // Add click handlers for wishlist buttons
-        document.querySelectorAll('.wishlist-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                btn.textContent = btn.textContent === '♡' ? '♥' : '♡';
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
