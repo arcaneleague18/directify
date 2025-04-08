@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Furniture</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="font-sans bg-gray-900 text-white">
+    <!-- Header Section -->
+    <header class="relative h-48">
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://via.placeholder.com/800x400?text=Living+Room');"></div>
+        <div class="relative z-10">
+            <nav class="flex justify-between items-center p-2 bg-gray-800 bg-opacity-75">
+                <div class="text-yellow-400 font-bold text-lg">JNTUU</div>
+                <div class="flex items-center space-x-2">
+                    <a href="#" class="text-white text-sm hover:text-yellow-400">Home</a>
+                    <a href="#" class="text-white text-sm hover:text-yellow-400">Categories</a>
+                    <a href="#" class="text-white text-sm hover:text-yellow-400">New</a>
+                    <a href="#" class="text-white text-sm hover:text-yellow-400">Sale</a>
+                    <a href="#" class="text-white text-sm hover:text-yellow-400">About</a>
+                </div>
+            </nav>
+            <div class="text-center p-4">
+                <h1 class="text-3xl font-bold text-yellow-200">Transform Your Space</h1>
+                <!-- Search Bar -->
+                <div class="mt-4 relative max-w-xs mx-auto">
+                    <input type="text" id="searchInput" placeholder="Search products" class="pl-8 pr-4 py-2 rounded-full border border-gray-600 bg-gray-700 text-white text-sm focus:outline-none focus:ring-2 focus:ring-yellow-800 w-full">
+                    <span class="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400">🔍</span>
+                </div>
+                <h2 class="text-lg text-gray-300 mt-2">Discover premium furniture for your home.</h2>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="px-2 py-4">
+        <!-- Featured Products Section -->
+        <section class="featured-products">
+            <h2 class="text-center text-xl font-bold mb-4 text-yellow-200">Featured Products</h2>
+            <div class="flex flex-col items-center space-y-2 mb-4">
+                <button class="filter-btn px-3 py-1 rounded bg-yellow-800 text-white text-sm" data-filter="all">All Products</button>
+                <button class="filter-btn px-3 py-1 rounded bg-gray-700 text-white text-sm" data-filter="best">Best Sellers</button>
+                <button class="filter-btn px-3 py-1 rounded bg-gray-700 text-white text-sm" data-filter="new">New Arrivals</button>
+            </div>
+            <div class="product-grid grid grid-cols-2 gap-2">
+                <!-- Product cards will be populated by JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="bg-yellow-900 p-4">
+            <h3 class="text-center text-xl font-bold">Newsletter</h3>
+            <p class="text-center mt-2 text-gray-300 text-sm">Stay updated with our latest offers.</p>
+            <form class="flex flex-col items-center mt-2 max-w-xs mx-auto">
+                <input type="email" placeholder="Enter your email" class="px-3 py-1 rounded-l-full border border-gray-600 bg-gray-700 text-white text-sm mb-2 w-full">
+                <button class="px-3 py-1 bg-yellow-800 text-white rounded-full text-sm">Subscribe</button>
+            </form>
+        </div>
+        <div class="bg-gray-800 p-4">
+            <div class="flex flex-col items-center space-y-4">
+                <div>
+                    <h4 class="text-lg font-bold text-yellow-400">Quick Links</h4>
+                    <ul class="text-center">
+                        <li><a href="#" class="text-gray-300 text-sm hover:text-yellow-400">About</a></li>
+                        <li><a href="#" class="text-gray-300 text-sm hover:text-yellow-400">Contact</a></li>
+                        <li><a href="#" class="text-gray-300 text-sm hover:text-yellow-400">Terms</a></li>
+                        <li><a href="#" class="text-gray-300 text-sm hover:text-yellow-400">Privacy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold text-yellow-400">Contact</h4>
+                    <p class="text-gray-300 text-sm">123 Furniture St, Design City</p>
+                    <p class="text-gray-300 text-sm">Phone: +1 234 567 890</p>
+                    <p class="text-gray-300 text-sm">Email: info@furniture.com</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold text-yellow-400">Follow Us</h4>
+                    <div class="flex space-x-2 justify-center">
+                        <a href="#" class="bg-gray-700 rounded-full p-1 text-yellow-400 text-sm">📘</a>
+                        <a href="#" class="bg-gray-700 rounded-full p-1 text-yellow-400 text-sm">🐦</a>
+                        <a href="#" class="bg-gray-700 rounded-full p-1 text-yellow-400 text-sm">📷</a>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center mt-2 text-gray-400 text-sm">© 2023 Modern Furniture. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="hh.js"></script>
+</body>
+</html>
