@@ -38,7 +38,7 @@
         <!-- Featured Products Section -->
         <section class="featured-products">
             <h2 class="text-center text-xl font-bold mb-4 text-yellow-200">Featured Products</h2>
-            <div class="flex flex-col items-center space-y-2 mb-4">
+            <div class="flex justify-center space-x-2 mb-4">
                 <button class="filter-btn px-3 py-1 rounded bg-yellow-800 text-white text-sm" data-filter="all">All Products</button>
                 <button class="filter-btn px-3 py-1 rounded bg-gray-700 text-white text-sm" data-filter="best">Best Sellers</button>
                 <button class="filter-btn px-3 py-1 rounded bg-gray-700 text-white text-sm" data-filter="new">New Arrivals</button>
@@ -46,6 +46,20 @@
             <div class="product-grid grid grid-cols-2 gap-2">
                 <!-- Product cards will be populated by JavaScript -->
             </div>
+        </section>
+
+        <!-- Product Detail View (Hidden by default) -->
+        <section id="product-detail" class="hidden p-2">
+            <div class="bg-white bg-opacity-75 text-black rounded-lg p-4">
+                <img id="detail-image" src="" alt="Product Image" class="w-full h-48 object-cover mb-2">
+                <h3 id="detail-name" class="text-lg font-bold mb-2"></h3>
+                <p id="detail-description" class="text-sm mb-4"></p>
+                <div class="flex space-x-2">
+                    <button class="px-3 py-1 bg-gray-200 text-black rounded text-sm">Add to Cart</button>
+                    <button class="px-3 py-1 bg-yellow-500 text-white rounded text-sm">Buy Now</button>
+                </div>
+            </div>
+            <button id="back-to-products" class="mt-4 px-3 py-1 bg-gray-700 text-white rounded text-sm">Back to Products</button>
         </section>
     </main>
 
@@ -88,6 +102,11 @@
             <p class="text-center mt-2 text-gray-400 text-sm">© 2023 Modern Furniture. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Go to Top Button -->
+    <button id="goToTop" class="fixed bottom-4 left-4 bg-yellow-800 text-white rounded-full p-2 hover:bg-yellow-700 focus:outline-none hidden">
+        ↑
+    </button>
 
     <!-- JavaScript -->
     <script src="hh.js"></script>
