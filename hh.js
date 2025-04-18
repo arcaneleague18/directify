@@ -1,63 +1,62 @@
-// Sample product data
-const products = [
-    { id: 1, name: "Modern Comfort Sofa", price: 1299, image: "spiders.jpg", category: "Living Room", isBestSeller: true, isNewArrival: false, description: "A stylish and comfortable sofa for your living room." },
-    { id: 2, name: "Elegant Dining Set", price: 1899, image: "https://via.placeholder.com/300?text=Dining+Set", category: "Dining", isBestSeller: false, isNewArrival: true, description: "A premium dining set for family gatherings." },
-    { id: 3, name: "Modern Bed Frame", price: 989, image: "https://via.placeholder.com/300?text=Bed", category: "Bedroom", isBestSeller: true, isNewArrival: false, description: "Sleek bed frame for a modern bedroom." },
-    { id: 4, name: "ABB INITIO GYM PVC Dumbbell Set 5kg x 2", price: 799, image: "https://via.placeholder.com/300?text=Dumbbell", category: "Office", isBestSeller: false, isNewArrival: true, description: "PVC Dumbbells, Hex Dumbbells, Home Gym Fixed Weight Dumbbell (5 kg)" },
+// Sample place data
+const places = [
+    { id: 1, name: "Union Bank", image: "spiders.jpg", category: "Banks", isBestSeller: true, isNewArrival: false, description: "Union Bank at JNTUH is an on-campus branch offering comprehensive banking services to students, faculty." },
+    { id: 2, name: "CSE Block", image: "https://via.placeholder.com/300?text=CSE", category: "Departments", isBestSeller: false, isNewArrival: true, description: "Department of Computer Science Engineering with advanced computing labs and seminar halls." },
+    { id: 3, name: "Krishna Hostel", image: "https://via.placeholder.com/300?text=Hostel", category: "Hostels", isBestSeller: true, isNewArrival: false, description: "Krishna boys hostel adjacent to Gowthami hostel for senior and junior boys." },
+    { id: 4, name: "ECE Block", image: "https://via.placeholder.com/300?text=ECE", category: "Departments", isBestSeller: false, isNewArrival: true, description: "Department of Electronics and Communication Engineering with digital system labs." },
 ];
 
-// Function to render products
-function renderProducts(productList) {
-    const productGrid = document.querySelector(".product-grid");
-    productGrid.innerHTML = "";
-    productList.forEach(product => {
-        const productCard = document.createElement("div");
-        productCard.className = "bg-gray-800 rounded-lg shadow-md overflow-hidden cursor-pointer";
-        productCard.innerHTML = `
-            <img src="${product.image}" alt="${product.name}" class="w-full h-24 object-cover">
+// Function to render places
+function renderPlaces(placeList) {
+    const placeGrid = document.querySelector(".place-grid");
+    placeGrid.innerHTML = "";
+    placeList.forEach(place => {
+        const placeCard = document.createElement("div");
+        placeCard.className = "bg-gray-800 rounded-lg shadow-md overflow-hidden cursor-pointer";
+        placeCard.innerHTML = `
+            <img src="${place.image}" alt="${place.name}" class="w-full h-24 object-cover">
             <div class="p-2">
-                <h3 class="text-sm font-semibold text-white">${product.name}</h3>
-                <p class="text-yellow-400 text-sm">$${product.price}</p>
+                <h3 class="text-sm font-semibold text-white">${place.name}</h3>
             </div>
         `;
-        productCard.addEventListener("click", () => showProductDetail(product));
-        productGrid.appendChild(productCard);
+        placeCard.addEventListener("click", () => showPlaceDetail(place));
+        placeGrid.appendChild(placeCard);
     });
 }
 
-// Function to show product detail
-function showProductDetail(product) {
-    const productDetail = document.getElementById("product-detail");
+// Function to show place detail
+function showPlaceDetail(place) {
+    const placeDetail = document.getElementById("place-detail");
     const detailImage = document.getElementById("detail-image");
     const detailName = document.getElementById("detail-name");
     const detailDescription = document.getElementById("detail-description");
 
-    detailImage.src = product.image;
-    detailName.textContent = product.name;
-    detailDescription.textContent = product.description;
+    detailImage.src = place.image;
+    detailName.textContent = place.name;
+    detailDescription.textContent = place.description;
 
-    document.querySelector(".featured-products").classList.add("hidden");
-    productDetail.classList.remove("hidden");
+    document.querySelector(".featured-categories").classList.add("hidden");
+    placeDetail.classList.remove("hidden");
 }
 
-// Function to go back to products
-document.getElementById("back-to-products").addEventListener("click", () => {
-    document.querySelector(".featured-products").classList.remove("hidden");
-    document.getElementById("product-detail").classList.add("hidden");
-    renderProducts(products); // Re-render products to reset the grid
+// Function to go back to categories
+document.getElementById("back-to-categories").addEventListener("click", () => {
+    document.querySelector(".featured-categories").classList.remove("hidden");
+    document.getElementById("place-detail").classList.add("hidden");
+    renderPlaces(places); // Re-render places to reset the grid
 });
 
-// Initial render of all products
-renderProducts(products);
+// Initial render of all places
+renderPlaces(places);
 
 // Search functionality
 const searchInput = document.getElementById("searchInput");
 searchInput.addEventListener("input", (e) => {
     const searchTerm = e.target.value.toLowerCase();
-    const filteredProducts = products.filter(product => 
-        product.name.toLowerCase().includes(searchTerm)
+    const filteredPlaces = places.filter(place => 
+        place.name.toLowerCase().includes(searchTerm)
     );
-    renderProducts(filteredProducts);
+    renderPlaces(filteredPlaces);
 });
 
 // Filter tabs functionality
@@ -72,17 +71,15 @@ filterButtons.forEach(button => {
         button.classList.remove("bg-gray-700", "text-white");
         button.classList.add("bg-yellow-800", "text-white");
 
-        // Filter products
+        // Filter places
         const filter = button.getAttribute("data-filter");
-        let filteredProducts;
+        let filteredPlaces;
         if (filter === "all") {
-            filteredProducts = products;
-        } else if (filter === "best") {
-            filteredProducts = products.filter(product => product.isBestSeller);
-        } else if (filter === "new") {
-            filteredProducts = products.filter(product => product.isNewArrival);
+            filteredPlaces = places;
+        } else {
+            filteredPlaces = places.filter(place => place.category === filter);
         }
-        renderProducts(filteredProducts);
+        renderPlaces(filteredPlaces);
     });
 });
 
