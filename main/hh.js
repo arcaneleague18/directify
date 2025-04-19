@@ -1,22 +1,31 @@
-// Sample place data
-const places = [
-    { id: 1, name: "Union Bank", image: "spiders.jpg", category: "Banks", isBestSeller: true, isNewArrival: false, description: "Union Bank at JNTUH is an on-campus branch offering comprehensive banking services to students, faculty." },
-    { id: 2, name: "CSE Block", image: "https://via.placeholder.com/300?text=CSE", category: "Departments", isBestSeller: false, isNewArrival: true, description: "Department of Computer Science Engineering with advanced computing labs and seminar halls." },
-    { id: 3, name: "Krishna Hostel", image: "https://via.placeholder.com/300?text=Hostel", category: "Hostels", isBestSeller: true, isNewArrival: false, description: "Krishna boys hostel adjacent to Gowthami hostel for senior and junior boys." },
-    { id: 4, name: "ECE Block", image: "https://via.placeholder.com/300?text=ECE", category: "Departments", isBestSeller: false, isNewArrival: true, description: "Department of Electronics and Communication Engineering with digital system labs." },
-];
+// Global variable to store fetched places
+let places = [];
 
-// Function to render places
+async function fetchPlaces(sector = 'all') {
+    try {
+        const url = sector === 'all' ? 'http://localhost:3000/api/places' : `http://localhost:3000/api/places/${sector}`;
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Network response was not ok');
+        places = await response.json();
+        renderPlaces(places);
+    } catch (error) {
+        console.error('Error fetching places:', error);
+        places = []; // Fallback to empty array if fetch fails
+        renderPlaces(places);
+    }
+}
+
 function renderPlaces(placeList) {
     const placeGrid = document.querySelector(".place-grid");
     placeGrid.innerHTML = "";
     placeList.forEach(place => {
         const placeCard = document.createElement("div");
         placeCard.className = "bg-gray-800 rounded-lg shadow-md overflow-hidden cursor-pointer";
+        const imageSrc = place.image_url ? `http://localhost:3000/${place.image_url}` : `https://via.placeholder.com/300?text=${encodeURIComponent(place.location)}`;
         placeCard.innerHTML = `
-            <img src="${place.image}" alt="${place.name}" class="w-full h-24 object-cover">
+            <img src="${imageSrc}" alt="${place.location}" class="w-full h-24 object-cover">
             <div class="p-2">
-                <h3 class="text-sm font-semibold text-white">${place.name}</h3>
+                <h3 class="text-sm font-semibold text-white">${place.location}</h3>
             </div>
         `;
         placeCard.addEventListener("click", () => showPlaceDetail(place));
@@ -24,37 +33,37 @@ function renderPlaces(placeList) {
     });
 }
 
-// Function to show place detail
 function showPlaceDetail(place) {
     const placeDetail = document.getElementById("place-detail");
     const detailImage = document.getElementById("detail-image");
     const detailName = document.getElementById("detail-name");
     const detailDescription = document.getElementById("detail-description");
+    const detailCoordinates = document.getElementById("detail-coordinates");
 
-    detailImage.src = place.image;
-    detailName.textContent = place.name;
+    detailImage.src = place.image_url ? `http://localhost:3000/${place.image_url}` : `https://via.placeholder.com/300?text=${encodeURIComponent(place.location)}`;
+    detailName.textContent = place.location;
     detailDescription.textContent = place.description;
+    detailCoordinates.textContent = `Latitude: ${place.latitude}, Longitude: ${place.longitude}`;
 
     document.querySelector(".featured-categories").classList.add("hidden");
     placeDetail.classList.remove("hidden");
 }
-
 // Function to go back to categories
 document.getElementById("back-to-categories").addEventListener("click", () => {
     document.querySelector(".featured-categories").classList.remove("hidden");
     document.getElementById("place-detail").classList.add("hidden");
-    renderPlaces(places); // Re-render places to reset the grid
+    fetchPlaces('all'); // Re-fetch all places to reset the grid
 });
 
-// Initial render of all places
-renderPlaces(places);
+// Initial fetch of all places
+fetchPlaces('all');
 
 // Search functionality
 const searchInput = document.getElementById("searchInput");
 searchInput.addEventListener("input", (e) => {
     const searchTerm = e.target.value.toLowerCase();
     const filteredPlaces = places.filter(place => 
-        place.name.toLowerCase().includes(searchTerm)
+        place.location.toLowerCase().includes(searchTerm)
     );
     renderPlaces(filteredPlaces);
 });
@@ -73,13 +82,7 @@ filterButtons.forEach(button => {
 
         // Filter places
         const filter = button.getAttribute("data-filter");
-        let filteredPlaces;
-        if (filter === "all") {
-            filteredPlaces = places;
-        } else {
-            filteredPlaces = places.filter(place => place.category === filter);
-        }
-        renderPlaces(filteredPlaces);
+        fetchPlaces(filter);
     });
 });
 
