@@ -10,3 +10,7 @@ git branch - shows all the local branches
 git fetch origin - update all the info locally from the github
 git pull origin branch_name - update the changes (which are made directly in the github) locally
 
+npm init -y
+npm install express pg
+npm install cors
+node server.js
