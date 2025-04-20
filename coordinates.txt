@@ -20,7 +20,7 @@ girls hostel, 17.49517579886927, 78.39393929619007, Hostels, Girls hostel alloca
 union bank, 17.495851167824103, 78.39449326482776, Banks, Union Bank at JNTUH is an on-campus branch offering comprehensive banking services to students, faculty
 sbi bank, 17.49397582519155, 78.39350964012529, Banks, SBI at JNTUH provides convenient and full-fledged banking services for students, faculty, and university staff 
 Jntu auditorium, 17.491942837600362, 78.39178609979825, Others, JNTU auditorium for events and fests conducted and for seminars 
-Indoor stadium, 17.491242361996683, 78.39079905630655, Sports, Indoor stadium for students with various sport facilities and swimming pool
+Indoor stadium, 17.491242361996683, 78.39079905630655, Sports, Indoor stadium for students with gym, badminton court,table tennis and swimming pool
 SIT building, 17.495413348378683, 78.39286983728704, Others, SIT building controls the adminstrative part of the college and isses documents
 Science block, 17.494517396129833, 78.39250916595246, Others, Science block known as the spandana block contains the phsyics and chemistry department with respective labs
 Main building, 17.49443035216393, 78.39185479913357, Student Service, Main building for admissions for freshers and documents verification
