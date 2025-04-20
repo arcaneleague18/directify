@@ -3,34 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JNTU Tatkal</title>
+    <title>directify</title>
+    <link rel="icon" type="image/jpeg" href="./server/public/images/logo.jpeg">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="font-sans bg-gray-900 text-white">
-    <!-- Header Section -->
-    <header class="relative h-48">
-        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://via.placeholder.com/800x400?text=Campus');"></div>
-        <div class="relative z-10">
-            <nav class="flex justify-between items-center p-2 bg-gray-800 bg-opacity-75">
-                <div class="text-yellow-400 font-bold text-lg">JNTUU</div>
-                <div class="flex items-center space-x-2">
-                    <a href="#" class="text-white text-sm hover:text-yellow-400">Home</a>
-                    <a href="#Categories" class="text-white text-sm hover:text-yellow-400">Categories</a>
-                    <a href="#" class="text-white text-sm hover:text-yellow-400">New</a>
-                    <a href="#" class="text-white text-sm hover:text-yellow-400">About</a>
-                </div>
-            </nav>
-            <div class="text-center p-4">
-                <h1 class="text-3xl font-bold text-yellow-200">Navigate the Campus</h1>
-                <!-- Search Bar -->
-                <div class="mt-4 relative max-w-xs mx-auto">
-                    <input type="text" id="searchInput" placeholder="Search places" class="pl-8 pr-4 py-2 rounded-full border border-gray-600 bg-gray-700 text-white text-sm focus:outline-none focus:ring-2 focus:ring-yellow-800 w-full">
-                    <span class="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400">🔍</span>
-                </div>
-                <h2 class="text-lg text-gray-300 mt-2">Not sure where to go? We got it covered.</h2>
+<!-- Header Section -->
+<header class="relative h-84">
+    <div class="absolute inset-0 bg-cover bg-center" style="background-color: rgba(101, 235, 134, 0.867);"></div>
+    <div class="relative z-10">
+        <!-- Navigation Bar -->
+        <nav class="flex justify-between items-center p-2 bg-gray-800 bg-opacity-75">
+            <div class="text-yellow-400 font-bold text-lg">JNTUH</div>
+            <div class="flex items-center space-x-2">
+                <a href="#" class="text-white text-sm hover:text-yellow-400">Home</a>
+                <a href="#Categories" class="text-white text-sm hover:text-yellow-400">Categories</a>
+                <a href="#" class="text-white text-sm hover:text-yellow-400">New</a>
+                <a href="#" class="text-white text-sm hover:text-yellow-400">About</a>
             </div>
+        </nav>
+        <div class="flex flex-col items-center justify-center h-[calc(100%-2rem)] p-4">
+            <img src="./server/public/images/logo.jpeg" alt="Campus Banner" class="w-3/4 max-w-md mb-4 rounded-lg shadow-lg object-cover">
+            <h1 class="text-3xl font-bold text-yellow-200">Navigate the Campus</h1>
+            <div class="mt-4 relative max-w-xs mx-auto">
+                <input type="text" id="searchInput" placeholder="Search places" class="pl-8 pr-4 py-2 rounded-full border border-gray-600 bg-gray-700 text-white text-sm focus:outline-none focus:ring-2 focus:ring-green-700 w-full">
+                <span class="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400">🔍</span>
+            </div>
+            <h2 class="text-lg text-gray-100 mt-2">Not sure where to go? We got it covered.</h2>
         </div>
-    </header>
+    </div>
+</header>
 
     <!-- Main Content -->
     <main id="Categories" class="px-2 py-4">
@@ -38,7 +40,7 @@
         <section class="featured-categories">
             <h2 class="text-center text-xl font-bold mb-4 text-yellow-200">Browse by Categories</h2>
             <div class="flex overflow-x-auto space-x-2 mb-4 pb-2 scrollbar-hide">
-                <button class="filter-btn px-3 py-1 rounded bg-yellow-800 text-white text-sm whitespace-nowrap" data-filter="all">All Places</button>
+                <button class="filter-btn px-3 py-1 rounded bg-green-700 text-white text-sm whitespace-nowrap" data-filter="all">All Places</button>
                 <button class="filter-btn px-3 py-1 rounded bg-gray-700 text-white text-sm whitespace-nowrap" data-filter="Banks">Banks</button>
                 <button class="filter-btn px-3 py-1 rounded bg-gray-700 text-white text-sm whitespace-nowrap" data-filter="Departments">Departments</button>
                 <button class="filter-btn px-3 py-1 rounded bg-gray-700 text-white text-sm whitespace-nowrap" data-filter="Hostels">Hostels</button>
@@ -69,12 +71,12 @@
 
     <!-- Footer Section -->
     <footer>
-        <div class="bg-yellow-900 p-4">
+        <div class="bg-yellow-800 p-4">
             <h3 class="text-center text-xl font-bold">Newsletter</h3>
             <p class="text-center mt-2 text-gray-300 text-sm">Stay updated with our latest offers.</p>
             <form class="flex flex-col items-center mt-2 max-w-xs mx-auto">
                 <input type="email" placeholder="Enter your email" class="px-3 py-1 rounded-l-full border border-gray-600 bg-gray-700 text-white text-sm mb-2 w-full">
-                <button class="px-3 py-1 bg-yellow-800 text-white rounded-full text-sm">Subscribe</button>
+                <button class="px-3 py-1 bg-green-700 text-white rounded-full text-sm">Subscribe</button>
             </form>
         </div>
         <div class="bg-gray-800 p-4">
@@ -109,7 +111,7 @@
     </footer>
 
     <!-- Go to Top Button -->
-    <button id="goToTop" class="fixed bottom-4 left-4 bg-yellow-800 text-white rounded-full p-2 hover:bg-yellow-700 focus:outline-none hidden">
+    <button id="goToTop" class="fixed bottom-4 left-4 bg-green-700 text-white rounded-full p-2 hover:bg-yellow-700 focus:outline-none hidden">
         ↑
     </button>
     <script src="https://cdn.botpress.cloud/webchat/v2.3/inject.js"></script>
