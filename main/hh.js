@@ -74,11 +74,11 @@ filterButtons.forEach(button => {
     button.addEventListener("click", () => {
         // Update active button styling
         filterButtons.forEach(btn => {
-            btn.classList.remove("bg-yellow-800", "text-white");
+            btn.classList.remove("bg-green-700", "text-white");
             btn.classList.add("bg-gray-700", "text-white");
         });
         button.classList.remove("bg-gray-700", "text-white");
-        button.classList.add("bg-yellow-800", "text-white");
+        button.classList.add("bg-green-700", "text-white");
 
         // Filter places
         const filter = button.getAttribute("data-filter");
