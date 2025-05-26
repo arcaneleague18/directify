@@ -1,5 +1,6 @@
-// Global variable to store fetched places
+// Global variable to store fetched places and the currently selected place
 let places = [];
+let selectedPlace = null;
 
 async function fetchPlaces(sector = 'all') {
     try {
@@ -10,11 +11,12 @@ async function fetchPlaces(sector = 'all') {
         renderPlaces(places);
     } catch (error) {
         console.error('Error fetching places:', error);
-        places = []; // Fallback to empty array if fetch fails
+        places = [];
         renderPlaces(places);
     }
 }
 
+// Function to render places
 function renderPlaces(placeList) {
     const placeGrid = document.querySelector(".place-grid");
     placeGrid.innerHTML = "";
@@ -33,7 +35,9 @@ function renderPlaces(placeList) {
     });
 }
 
+// Function to show place detail
 function showPlaceDetail(place) {
+    selectedPlace = place; // Store the selected place
     const placeDetail = document.getElementById("place-detail");
     const detailImage = document.getElementById("detail-image");
     const detailName = document.getElementById("detail-name");
@@ -48,11 +52,13 @@ function showPlaceDetail(place) {
     document.querySelector(".featured-categories").classList.add("hidden");
     placeDetail.classList.remove("hidden");
 }
+
 // Function to go back to categories
 document.getElementById("back-to-categories").addEventListener("click", () => {
+    selectedPlace = null; // Clear selected place
     document.querySelector(".featured-categories").classList.remove("hidden");
     document.getElementById("place-detail").classList.add("hidden");
-    fetchPlaces('all'); // Re-fetch all places to reset the grid
+    fetchPlaces('all');
 });
 
 // Initial fetch of all places
@@ -72,15 +78,13 @@ searchInput.addEventListener("input", (e) => {
 const filterButtons = document.querySelectorAll(".filter-btn");
 filterButtons.forEach(button => {
     button.addEventListener("click", () => {
-        // Update active button styling
         filterButtons.forEach(btn => {
-            btn.classList.remove("bg-green-700", "text-white");
+            btn.classList.remove("bg-yellow-800", "text-white");
             btn.classList.add("bg-gray-700", "text-white");
         });
         button.classList.remove("bg-gray-700", "text-white");
-        button.classList.add("bg-green-700", "text-white");
+        button.classList.add("bg-yellow-800", "text-white");
 
-        // Filter places
         const filter = button.getAttribute("data-filter");
         fetchPlaces(filter);
     });
@@ -88,7 +92,6 @@ filterButtons.forEach(button => {
 
 // Go to Top Button Functionality
 const goToTopButton = document.getElementById("goToTop");
-
 window.addEventListener("scroll", () => {
     if (window.pageYOffset > 100) {
         goToTopButton.classList.remove("hidden");
@@ -96,7 +99,39 @@ window.addEventListener("scroll", () => {
         goToTopButton.classList.add("hidden");
     }
 });
-
 goToTopButton.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+const startButton = document.querySelector("#place-detail button.bg-yellow-500");
+startButton.addEventListener("click", () => {
+    if (!selectedPlace) {
+        alert("No place selected. Please try again.");
+        return;
+    }
+
+    // Get user's current location
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const userLat = position.coords.latitude;
+                const userLng = position.coords.longitude;
+
+                // Construct Google Maps URL
+                const destinationLat = selectedPlace.latitude;
+                const destinationLng = selectedPlace.longitude;
+                const travelMode = "bicycling"; // Default mode is bike
+                const mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${userLat},${userLng}&destination=${destinationLat},${destinationLng}&travelmode=${travelMode}`;
+
+                // Redirect to Google Maps
+                window.open(mapsUrl, "_blank");
+            },
+            (error) => {
+                console.error("Error getting user location:", error);
+                alert("Unable to get your location. Please enable location services and try again.");
+            }
+        );
+    } else {
+        alert("Geolocation is not supported by your browser.");
+    }
 });
