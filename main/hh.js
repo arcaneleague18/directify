@@ -120,7 +120,7 @@ startButton.addEventListener("click", () => {
                 // Construct Google Maps URL
                 const destinationLat = selectedPlace.latitude;
                 const destinationLng = selectedPlace.longitude;
-                const travelMode = "bicycling"; // Default mode is bike
+                const travelMode = "two-wheeler"; // Default mode is bike
                 const mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${userLat},${userLng}&destination=${destinationLat},${destinationLng}&travelmode=${travelMode}`;
 
                 // Redirect to Google Maps
