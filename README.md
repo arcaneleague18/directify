@@ -12,7 +12,7 @@ git branch                                       -  shows all the local branches
 git fetch origin                                 -  update all the info locally from the github
 git pull origin branch_name                      -  update the changes (which are made directly in the github) locally
 
-TERMINAL COMMANDS TO MAKE THE PROECT RUN IN UR PC:
+TERMINAL COMMANDS TO MAKE THE PROJECT RUN IN UR PC:
 
 cd .\main\server\
 npm init -y
