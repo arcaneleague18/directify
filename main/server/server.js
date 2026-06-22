@@ -20,12 +20,12 @@ const pool = new Pool({
   port: 5432,
 });
 
-// Root route to serve the index.html
+// Root route to serve the main page (index.html)
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// API endpoint to get all places
+// API endpoint to get all places from the 'places' table
 app.get('/api/places', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM places');
@@ -36,7 +36,7 @@ app.get('/api/places', async (req, res) => {
   }
 });
 
-// API endpoint to get places by sector
+// API endpoint to get all places within a specific sector
 app.get('/api/places/:sector', async (req, res) => {
   const sector = req.params.sector;
   try {
@@ -48,6 +48,7 @@ app.get('/api/places/:sector', async (req, res) => {
   }
 });
 
+// Start the server and listen on the specified port
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
