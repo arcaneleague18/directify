@@ -1,21 +1,40 @@
 # JNTUH-tatkal
-a university navigation web application
+A university navigation web application
 
-SOME USEFUL GIT COMMANDS:
+## Some Useful Git Commands
 
-* git add . -add all files
-* git commit -m "some message"                   -  commit changes
-* git push origin branch_name                    -  push to desired branch
-* git checkout -b branch_name origin/branch_name -  create a branch locally and track that specific one from github
-* git switch branch_name                         -  switch to a branch
-git branch                                       -  shows all the local branches
-git fetch origin                                 -  update all the info locally from the github
-git pull origin branch_name                      -  update the changes (which are made directly in the github) locally
+```bash
+# Add all files
+git add .
 
-TERMINAL COMMANDS TO MAKE THE PROJECT RUN IN UR PC:
+# Commit changes
+git commit -m "some message"
 
-cd .\main\server\
+# Push to desired branch
+git push origin branch_name
+
+# Create a branch locally and track that specific one from GitHub
+git checkout -b branch_name origin/branch_name
+
+# Switch to a branch
+git switch branch_name
+
+# Shows all the local branches
+git branch
+
+# Update all the info locally from GitHub
+git fetch origin
+
+# Update the changes (which are made directly in GitHub) locally
+git pull origin branch_name
+```
+
+## Terminal Commands to Make the Project Run on Your PC
+
+```bash
+cd ./main/server/
 npm init -y
 npm install express pg
 npm install cors
 node server.js
+```
