@@ -25,25 +25,36 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// API endpoint to get all places from the 'places' table
+/**
+ * API endpoint to get all places from the 'places' table
+ * Returns: Array of place objects
+ */
 app.get('/api/places', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM places');
     res.json(result.rows);
   } catch (err) {
-    console.error(err.stack);
+    console.error('Error fetching places:', err.stack);
     res.status(500).send('Error fetching places');
   }
 });
 
-// API endpoint to get all places within a specific sector
+/**
+ * API endpoint to get all places within a specific sector
+ * Validates input to avoid SQL injection
+ * Returns: Array of place objects for sector
+ */
 app.get('/api/places/:sector', async (req, res) => {
   const sector = req.params.sector;
+  // Simple validation: restrict sector parameter to alphanumeric/underscore
+  if (!/^[\w-]+$/.test(sector)) {
+    return res.status(400).json({ error: 'Invalid sector parameter' });
+  }
   try {
     const result = await pool.query('SELECT * FROM places WHERE sector = $1', [sector]);
     res.json(result.rows);
   } catch (err) {
-    console.error(err.stack);
+    console.error('Error fetching places by sector:', err.stack);
     res.status(500).send('Error fetching places by sector');
   }
 });
@@ -52,3 +63,5 @@ app.get('/api/places/:sector', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+
+module.exports = app; // Export for testing
