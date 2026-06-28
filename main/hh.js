@@ -2,6 +2,12 @@
 let places = [];
 let selectedPlace = null;
 
+/**
+ * Fetches places from the backend API. If 'sector' is 'all', fetches all places.
+ * Otherwise, fetches places for the specified sector.
+ * Updates the global 'places' array and renders them.
+ * @param {string} sector - The sector to filter places by ('all' or sector name)
+ */
 async function fetchPlaces(sector = 'all') {
     try {
         const url = sector === 'all' ? 'http://localhost:3000/api/places' : `http://localhost:3000/api/places/${sector}`;
@@ -16,7 +22,10 @@ async function fetchPlaces(sector = 'all') {
     }
 }
 
-// Function to render places
+/**
+ * Renders the places as cards in the UI grid.
+ * @param {Array} placeList - List of place objects to render.
+ */
 function renderPlaces(placeList) {
     const placeGrid = document.querySelector(".place-grid");
     placeGrid.innerHTML = "";
@@ -35,7 +44,10 @@ function renderPlaces(placeList) {
     });
 }
 
-// Function to show place detail
+/**
+ * Shows the detail view for a selected place.
+ * @param {Object} place - The place object whose details are to be shown.
+ */
 function showPlaceDetail(place) {
     selectedPlace = place; // Store the selected place
     const placeDetail = document.getElementById("place-detail");
@@ -54,25 +66,36 @@ function showPlaceDetail(place) {
 }
 
 // Function to go back to categories
-document.getElementById("back-to-categories").addEventListener("click", () => {
-    selectedPlace = null; // Clear selected place
-    document.querySelector(".featured-categories").classList.remove("hidden");
-    document.getElementById("place-detail").classList.add("hidden");
-    fetchPlaces('all');
-});
+// Hides detail view, shows categories, and fetches all places again
+// User can return to main list
+// Defensive: clears selectedPlace
 
-// Initial fetch of all places
+// Add event listener for 'back to categories' button
+// Only attach if element exists
+const backBtn = document.getElementById("back-to-categories");
+if (backBtn) {
+    backBtn.addEventListener("click", () => {
+        selectedPlace = null; // Clear selected place
+        document.querySelector(".featured-categories").classList.remove("hidden");
+        document.getElementById("place-detail").classList.add("hidden");
+        fetchPlaces('all');
+    });
+}
+
+// Initial fetch of all places on page load
 fetchPlaces('all');
 
 // Search functionality
 const searchInput = document.getElementById("searchInput");
-searchInput.addEventListener("input", (e) => {
-    const searchTerm = e.target.value.toLowerCase();
-    const filteredPlaces = places.filter(place => 
-        place.location.toLowerCase().includes(searchTerm)
-    );
-    renderPlaces(filteredPlaces);
-});
+if (searchInput) {
+    searchInput.addEventListener("input", (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        const filteredPlaces = places.filter(place => 
+            place.location.toLowerCase().includes(searchTerm)
+        );
+        renderPlaces(filteredPlaces);
+    });
+}
 
 // Filter tabs functionality
 const filterButtons = document.querySelectorAll(".filter-btn");
@@ -92,46 +115,52 @@ filterButtons.forEach(button => {
 
 // Go to Top Button Functionality
 const goToTopButton = document.getElementById("goToTop");
-window.addEventListener("scroll", () => {
-    if (window.pageYOffset > 100) {
-        goToTopButton.classList.remove("hidden");
-    } else {
-        goToTopButton.classList.add("hidden");
-    }
-});
-goToTopButton.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-});
+if (goToTopButton) {
+    window.addEventListener("scroll", () => {
+        if (window.pageYOffset > 100) {
+            goToTopButton.classList.remove("hidden");
+        } else {
+            goToTopButton.classList.add("hidden");
+        }
+    });
+    goToTopButton.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+}
 
+// Start navigation button functionality
+// Defensive: attach only if button exists
 const startButton = document.querySelector("#place-detail button.bg-yellow-500");
-startButton.addEventListener("click", () => {
-    if (!selectedPlace) {
-        alert("No place selected. Please try again.");
-        return;
-    }
+if (startButton) {
+    startButton.addEventListener("click", () => {
+        if (!selectedPlace) {
+            alert("No place selected. Please try again.");
+            return;
+        }
 
-    // Get user's current location
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                const userLat = position.coords.latitude;
-                const userLng = position.coords.longitude;
+        // Get user's current location
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const userLat = position.coords.latitude;
+                    const userLng = position.coords.longitude;
 
-                // Construct Google Maps URL
-                const destinationLat = selectedPlace.latitude;
-                const destinationLng = selectedPlace.longitude;
-                const travelMode = "two-wheeler"; // Default mode is bike
-                const mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${userLat},${userLng}&destination=${destinationLat},${destinationLng}&travelmode=${travelMode}`;
+                    // Construct Google Maps URL
+                    const destinationLat = selectedPlace.latitude;
+                    const destinationLng = selectedPlace.longitude;
+                    const travelMode = "two-wheeler"; // Default mode is bike
+                    const mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${userLat},${userLng}&destination=${destinationLat},${destinationLng}&travelmode=${travelMode}`;
 
-                // Redirect to Google Maps
-                window.open(mapsUrl, "_blank");
-            },
-            (error) => {
-                console.error("Error getting user location:", error);
-                alert("Unable to get your location. Please enable location services and try again.");
-            }
-        );
-    } else {
-        alert("Geolocation is not supported by your browser.");
-    }
-});
+                    // Redirect to Google Maps
+                    window.open(mapsUrl, "_blank");
+                },
+                (error) => {
+                    console.error("Error getting user location:", error);
+                    alert("Unable to get your location. Please enable location services and try again.");
+                }
+            );
+        } else {
+            alert("Geolocation is not supported by your browser.");
+        }
+    });
+}
