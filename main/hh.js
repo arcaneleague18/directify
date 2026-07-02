@@ -69,6 +69,8 @@ function showPlaceDetail(place) {
 // Hides detail view, shows categories, and fetches all places again
 // User can return to main list
 // Defensive: clears selectedPlace
+//
+// TODO: Consider using a routing library for better navigation state in future
 
 // Add event listener for 'back to categories' button
 // Only attach if element exists
@@ -86,6 +88,7 @@ if (backBtn) {
 fetchPlaces('all');
 
 // Search functionality
+// Filters the current list of places by the search input value (case-insensitive)
 const searchInput = document.getElementById("searchInput");
 if (searchInput) {
     searchInput.addEventListener("input", (e) => {
@@ -98,6 +101,7 @@ if (searchInput) {
 }
 
 // Filter tabs functionality
+// Highlights selected filter and fetches places for that sector
 const filterButtons = document.querySelectorAll(".filter-btn");
 filterButtons.forEach(button => {
     button.addEventListener("click", () => {
@@ -114,6 +118,7 @@ filterButtons.forEach(button => {
 });
 
 // Go to Top Button Functionality
+// Shows button after scrolling and scrolls to top on click
 const goToTopButton = document.getElementById("goToTop");
 if (goToTopButton) {
     window.addEventListener("scroll", () => {
@@ -130,6 +135,8 @@ if (goToTopButton) {
 
 // Start navigation button functionality
 // Defensive: attach only if button exists
+// Uses Google Maps Directions with two-wheeler as travel mode
+// Note: 'two-wheeler' is not an official Google Maps API mode, but some browsers may accept it for bikes
 const startButton = document.querySelector("#place-detail button.bg-yellow-500");
 if (startButton) {
     startButton.addEventListener("click", () => {
@@ -149,6 +156,7 @@ if (startButton) {
                     const destinationLat = selectedPlace.latitude;
                     const destinationLng = selectedPlace.longitude;
                     const travelMode = "two-wheeler"; // Default mode is bike
+                    // Note: If travelMode not supported, Google Maps defaults to driving
                     const mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${userLat},${userLng}&destination=${destinationLat},${destinationLng}&travelmode=${travelMode}`;
 
                     // Redirect to Google Maps
@@ -164,3 +172,5 @@ if (startButton) {
         }
     });
 }
+
+// For maintainability: Consider extracting repeated URLs and selectors to constants in future refactor.
