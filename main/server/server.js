@@ -32,6 +32,9 @@ const pool = new Pool({
   port: process.env.PGPORT ? parseInt(process.env.PGPORT) : 5432,
 });
 
+// For test mocking and better maintainability, attach pool to app.locals
+app.locals.pool = pool;
+
 /**
  * Root route to serve the main page (index.html).
  * Serves the single-page application entry point.
