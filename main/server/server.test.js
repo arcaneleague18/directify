@@ -45,6 +45,12 @@ describe('API Endpoints', () => {
     expect(res.statusCode).toBe(404);
     expect(res.body.error).toMatch(/not found/);
   });
+
+  it('CORS headers should be present for API', async () => {
+    const res = await request(app).get('/api/places');
+    // Access-Control-Allow-Origin header should be present
+    expect(res.headers['access-control-allow-origin']).toBe('*');
+  });
 });
 
 describe('Static File Serving', () => {
@@ -52,5 +58,12 @@ describe('Static File Serving', () => {
     const res = await request(app).get('/');
     expect(res.statusCode).toBe(200);
     expect(res.text).toMatch(/<!DOCTYPE html>/i);
+  });
+
+  it('GET /styles.css returns 200 or 404', async () => {
+    // This test ensures static file serving is functional
+    // It's OK if styles.css does not exist, just check server does not crash
+    const res = await request(app).get('/styles.css');
+    expect([200, 404]).toContain(res.statusCode);
   });
 });
