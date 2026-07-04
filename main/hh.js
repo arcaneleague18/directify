@@ -1,3 +1,7 @@
+// Constants for maintainability
+const API_BASE_URL = 'http://localhost:3000';
+const PLACEHOLDER_IMG = 'https://via.placeholder.com/300?text=';
+
 // Global variable to store fetched places and the currently selected place
 let places = [];
 let selectedPlace = null;
@@ -10,7 +14,7 @@ let selectedPlace = null;
  */
 async function fetchPlaces(sector = 'all') {
     try {
-        const url = sector === 'all' ? 'http://localhost:3000/api/places' : `http://localhost:3000/api/places/${sector}`;
+        const url = sector === 'all' ? `${API_BASE_URL}/api/places` : `${API_BASE_URL}/api/places/${sector}`;
         const response = await fetch(url);
         if (!response.ok) throw new Error('Network response was not ok');
         places = await response.json();
@@ -28,11 +32,12 @@ async function fetchPlaces(sector = 'all') {
  */
 function renderPlaces(placeList) {
     const placeGrid = document.querySelector(".place-grid");
+    if (!placeGrid) return;
     placeGrid.innerHTML = "";
     placeList.forEach(place => {
         const placeCard = document.createElement("div");
         placeCard.className = "bg-gray-800 rounded-lg shadow-md overflow-hidden cursor-pointer";
-        const imageSrc = place.image_url ? `http://localhost:3000/${place.image_url}` : `https://via.placeholder.com/300?text=${encodeURIComponent(place.location)}`;
+        const imageSrc = place.image_url ? `${API_BASE_URL}/${place.image_url}` : `${PLACEHOLDER_IMG}${encodeURIComponent(place.location)}`;
         placeCard.innerHTML = `
             <img src="${imageSrc}" alt="${place.location}" class="w-full h-24 object-cover">
             <div class="p-2">
@@ -56,13 +61,18 @@ function showPlaceDetail(place) {
     const detailDescription = document.getElementById("detail-description");
     const detailCoordinates = document.getElementById("detail-coordinates");
 
-    detailImage.src = place.image_url ? `http://localhost:3000/${place.image_url}` : `https://via.placeholder.com/300?text=${encodeURIComponent(place.location)}`;
-    detailName.textContent = place.location;
-    detailDescription.textContent = place.description;
-    detailCoordinates.textContent = `Latitude: ${place.latitude}, Longitude: ${place.longitude}`;
+    if (detailImage && detailName && detailDescription && detailCoordinates && placeDetail) {
+        detailImage.src = place.image_url ? `${API_BASE_URL}/${place.image_url}` : `${PLACEHOLDER_IMG}${encodeURIComponent(place.location)}`;
+        detailName.textContent = place.location;
+        detailDescription.textContent = place.description;
+        detailCoordinates.textContent = `Latitude: ${place.latitude}, Longitude: ${place.longitude}`;
+    }
 
-    document.querySelector(".featured-categories").classList.add("hidden");
-    placeDetail.classList.remove("hidden");
+    const featuredCategories = document.querySelector(".featured-categories");
+    if (featuredCategories && placeDetail) {
+        featuredCategories.classList.add("hidden");
+        placeDetail.classList.remove("hidden");
+    }
 }
 
 // Function to go back to categories
@@ -78,8 +88,12 @@ const backBtn = document.getElementById("back-to-categories");
 if (backBtn) {
     backBtn.addEventListener("click", () => {
         selectedPlace = null; // Clear selected place
-        document.querySelector(".featured-categories").classList.remove("hidden");
-        document.getElementById("place-detail").classList.add("hidden");
+        const featuredCategories = document.querySelector(".featured-categories");
+        const placeDetail = document.getElementById("place-detail");
+        if (featuredCategories && placeDetail) {
+            featuredCategories.classList.remove("hidden");
+            placeDetail.classList.add("hidden");
+        }
         fetchPlaces('all');
     });
 }
@@ -173,4 +187,4 @@ if (startButton) {
     });
 }
 
-// For maintainability: Consider extracting repeated URLs and selectors to constants in future refactor.
+// For maintainability: Repeated URLs and selectors are now constants at the top. Consider extracting more UI selectors or making a UI utility module in the future.
