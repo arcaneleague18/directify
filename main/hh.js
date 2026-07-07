@@ -10,6 +10,7 @@ let selectedPlace = null;
  * Fetches places from the backend API. If 'sector' is 'all', fetches all places.
  * Otherwise, fetches places for the specified sector.
  * Updates the global 'places' array and renders them.
+ * Defensive: Renders empty array if fetch fails.
  * @param {string} sector - The sector to filter places by ('all' or sector name)
  */
 async function fetchPlaces(sector = 'all') {
@@ -28,6 +29,7 @@ async function fetchPlaces(sector = 'all') {
 
 /**
  * Renders the places as cards in the UI grid.
+ * Defensive: skips if placeGrid is not found.
  * @param {Array} placeList - List of place objects to render.
  */
 function renderPlaces(placeList) {
@@ -51,6 +53,7 @@ function renderPlaces(placeList) {
 
 /**
  * Shows the detail view for a selected place.
+ * Defensive: checks all elements before updating.
  * @param {Object} place - The place object whose details are to be shown.
  */
 function showPlaceDetail(place) {
@@ -75,13 +78,14 @@ function showPlaceDetail(place) {
     }
 }
 
-// Function to go back to categories
-// Hides detail view, shows categories, and fetches all places again
-// User can return to main list
-// Defensive: clears selectedPlace
-//
-// TODO: Consider using a routing library for better navigation state in future
-
+/**
+ * Function to go back to categories
+ * Hides detail view, shows categories, and fetches all places again
+ * User can return to main list
+ * Defensive: clears selectedPlace
+ *
+ * TODO: Consider using a routing library for better navigation state in future
+ */
 // Add event listener for 'back to categories' button
 // Only attach if element exists
 const backBtn = document.getElementById("back-to-categories");
@@ -101,8 +105,11 @@ if (backBtn) {
 // Initial fetch of all places on page load
 fetchPlaces('all');
 
-// Search functionality
-// Filters the current list of places by the search input value (case-insensitive)
+/**
+ * Search functionality
+ * Filters the current list of places by the search input value (case-insensitive)
+ * Defensive: attaches only if element exists
+ */
 const searchInput = document.getElementById("searchInput");
 if (searchInput) {
     searchInput.addEventListener("input", (e) => {
@@ -114,8 +121,11 @@ if (searchInput) {
     });
 }
 
-// Filter tabs functionality
-// Highlights selected filter and fetches places for that sector
+/**
+ * Filter tabs functionality
+ * Highlights selected filter and fetches places for that sector
+ * Defensive: attaches listeners only if elements found
+ */
 const filterButtons = document.querySelectorAll(".filter-btn");
 filterButtons.forEach(button => {
     button.addEventListener("click", () => {
@@ -131,8 +141,11 @@ filterButtons.forEach(button => {
     });
 });
 
-// Go to Top Button Functionality
-// Shows button after scrolling and scrolls to top on click
+/**
+ * Go to Top Button Functionality
+ * Shows button after scrolling and scrolls to top on click
+ * Defensive: attaches only if element exists
+ */
 const goToTopButton = document.getElementById("goToTop");
 if (goToTopButton) {
     window.addEventListener("scroll", () => {
@@ -147,10 +160,12 @@ if (goToTopButton) {
     });
 }
 
-// Start navigation button functionality
-// Defensive: attach only if button exists
-// Uses Google Maps Directions with two-wheeler as travel mode
-// Note: 'two-wheeler' is not an official Google Maps API mode, but some browsers may accept it for bikes
+/**
+ * Start navigation button functionality
+ * Defensive: attach only if button exists
+ * Uses Google Maps Directions with two-wheeler as travel mode
+ * Note: 'two-wheeler' is not an official Google Maps API mode, but some browsers may accept it for bikes
+ */
 const startButton = document.querySelector("#place-detail button.bg-yellow-500");
 if (startButton) {
     startButton.addEventListener("click", () => {
