@@ -38,6 +38,9 @@ app.locals.pool = pool;
 /**
  * Root route to serve the main page (index.html).
  * Serves the single-page application entry point.
+ * @name GET /
+ * @function
+ * @returns {HTML} index.html
  */
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
@@ -48,6 +51,9 @@ app.get('/', (req, res) => {
  * Returns: Array of place objects.
  * Responds with JSON.
  * On error, responds with { error: string } and status 500.
+ * @name GET /api/places
+ * @function
+ * @returns {JSON} Array of places or error
  */
 app.get('/api/places', async (req, res) => {
   try {
@@ -64,6 +70,10 @@ app.get('/api/places', async (req, res) => {
  * Validates input to avoid SQL injection.
  * Returns: Array of place objects for sector.
  * On error, responds with { error: string } and status 500 or 400.
+ * @name GET /api/places/:sector
+ * @function
+ * @param {string} sector - Sector name
+ * @returns {JSON} Array of places or error
  */
 app.get('/api/places/:sector', async (req, res) => {
   const sector = req.params.sector;
@@ -80,7 +90,12 @@ app.get('/api/places/:sector', async (req, res) => {
   }
 });
 
-// 404 handler for unknown API endpoints
+/**
+ * 404 handler for unknown API endpoints
+ * Responds with { error: string }
+ * @name 404 API Handler
+ * @function
+ */
 app.use('/api', (req, res) => {
   res.status(404).json({ error: 'API endpoint not found' });
 });
