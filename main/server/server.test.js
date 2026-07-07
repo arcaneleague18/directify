@@ -6,6 +6,8 @@ const request = require('supertest');
 const path = require('path');
 const app = require('./server');
 
+// API endpoint tests
+
 describe('API Endpoints', () => {
   it('GET /api/places should return places array', async () => {
     const res = await request(app).get('/api/places');
@@ -28,6 +30,7 @@ describe('API Endpoints', () => {
 
   it('GET /api/places triggers 500 for database error', async () => {
     // Simulate error by temporarily disconnecting pool
+    // Defensive: Only run test if pool exists
     const origQuery = app.locals && app.locals.pool && app.locals.pool.query;
     if (!origQuery) {
       // Skip test if not possible
@@ -52,6 +55,8 @@ describe('API Endpoints', () => {
     expect(res.headers['access-control-allow-origin']).toBe('*');
   });
 });
+
+// Static file serving tests
 
 describe('Static File Serving', () => {
   it('GET / should serve index.html', async () => {
