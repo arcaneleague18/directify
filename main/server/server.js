@@ -16,13 +16,12 @@ app.use(express.static(path.join(__dirname, 'public')));
  *
  * SECURITY NOTICE:
  * Do NOT hardcode credentials in production. Use environment variables.
+ * See .env.example for required variables. For local use, consider using the 'dotenv' package.
  *
- * To use environment variables, create a .env file (see .env.example).
- * Use the 'dotenv' package for local development (npm install dotenv).
+ * Example usage (after installing dotenv):
+ *   require('dotenv').config();
  *
- * Example:
- *   user: process.env.PGUSER,
- *   ...
+ * Make sure to add .env to .gitignore to avoid accidental exposure.
  */
 const pool = new Pool({
   user: process.env.PGUSER || 'postgres',
@@ -61,6 +60,7 @@ app.get('/api/places', async (req, res) => {
     res.json(result.rows);
   } catch (err) {
     console.error('Error fetching places:', err.stack);
+    // Never expose stack traces or sensitive info in production
     res.status(500).json({ error: 'Error fetching places' });
   }
 });

@@ -1,6 +1,11 @@
 // Minimal sample test for server API endpoints
 // Requires dev dependency: supertest (npm install --save-dev supertest)
 // Run with: npm test or npx jest or node server.test.js if using plain node
+//
+// To run locally:
+//   1. Ensure the backend is able to connect to your PostgreSQL instance.
+//   2. Create a test database and populate with a 'places' table for best results.
+//   3. Optionally, configure environment variables as per .env.example.
 
 const request = require('supertest');
 const path = require('path');
@@ -22,10 +27,19 @@ describe('API Endpoints', () => {
   });
 
   it('GET /api/places/:sector returns 200 and array for valid sector', async () => {
-    const res = await request(app).get('/api/places/all');
-    // Should be 200 even if result is empty array
-    expect(res.statusCode).toBe(200);
-    expect(Array.isArray(res.body)).toBe(true);
+    // Try to use a valid sector from the DB if possible
+    const allRes = await request(app).get('/api/places');
+    if (Array.isArray(allRes.body) && allRes.body.length > 0 && allRes.body[0].sector) {
+      const sector = allRes.body[0].sector;
+      const res = await request(app).get(`/api/places/${encodeURIComponent(sector)}`);
+      expect(res.statusCode).toBe(200);
+      expect(Array.isArray(res.body)).toBe(true);
+    } else {
+      // Fallback: just check for status 200 with 'all' sector
+      const res = await request(app).get('/api/places/all');
+      expect(res.statusCode).toBe(200);
+      expect(Array.isArray(res.body)).toBe(true);
+    }
   });
 
   it('GET /api/places triggers 500 for database error', async () => {
