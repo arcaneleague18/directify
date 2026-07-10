@@ -16,10 +16,11 @@ A university navigation web application
 
 ```
 cd ./main/server/
-npm init -y
-npm install express pg
-npm install cors
-node server.js
+npm install
+# Copy .env.example to .env and edit as needed:
+cp .env.example .env # (or create manually)
+# Then edit .env to set your PostgreSQL credentials
+npm start # or: node server.js
 ```
 
 ## Security Notice
@@ -27,6 +28,8 @@ node server.js
 - Ensure your PostgreSQL credentials are kept secure and not committed to public repositories.
 - Use environment variables for sensitive configuration (e.g., database password) in production. See [dotenv](https://www.npmjs.com/package/dotenv).
 - The backend validates sector input to prevent SQL injection.
+- **.env and node_modules/ are now gitignored. See `.gitignore`.**
+- See `.env.example` for required environment variables.
 
 ## Development Best Practices
 
@@ -34,5 +37,17 @@ node server.js
 - Use code comments for maintainability. See `main/hh.js`.
 - Review and update dependencies regularly for security.
 - Document any architectural decisions or changes in this README.
+
+## Environment Variables Setup
+
+Create a `.env` file in `main/server/` (see `.env.example`). Example:
+
+```
+PGUSER=your_db_user
+PGPASSWORD=your_db_password
+PGDATABASE=your_db_name
+PGHOST=localhost
+PGPORT=5432
+```
 
 ---
