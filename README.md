@@ -30,6 +30,7 @@ npm start # or: node server.js
 - The backend validates sector input to prevent SQL injection.
 - **.env and node_modules/ are now gitignored. See `.gitignore`.**
 - See `.env.example` for required environment variables.
+- **Always run your production server with `NODE_ENV=production` (see below) to enable best-practice security and performance settings.**
 
 ## Development Best Practices
 
@@ -37,6 +38,9 @@ npm start # or: node server.js
 - Use code comments for maintainability. See `main/hh.js`.
 - Review and update dependencies regularly for security.
 - Document any architectural decisions or changes in this README.
+- When deploying to production, set the `NODE_ENV` environment variable to `production` to enable security-related HTTP headers and production optimizations.
+  - Example (UNIX): `NODE_ENV=production node server.js`
+  - Example (Windows): `set NODE_ENV=production && node server.js`
 
 ## Environment Variables Setup
 
@@ -49,5 +53,3 @@ PGDATABASE=your_db_name
 PGHOST=localhost
 PGPORT=5432
 ```
-
----
