@@ -37,9 +37,12 @@ function renderPlaces(placeList) {
     if (!placeGrid) return;
     placeGrid.innerHTML = "";
     placeList.forEach(place => {
+        // Defensive: ensure essential properties exist before rendering
+        if (!place || !place.location || typeof place.location !== 'string') return;
         const placeCard = document.createElement("div");
         placeCard.className = "bg-gray-800 rounded-lg shadow-md overflow-hidden cursor-pointer";
-        const imageSrc = place.image_url ? `${API_BASE_URL}/${place.image_url}` : `${PLACEHOLDER_IMG}${encodeURIComponent(place.location)}`;
+        // Defensive: null check for image_url
+        const imageSrc = (place.image_url && typeof place.image_url === 'string') ? `${API_BASE_URL}/${place.image_url}` : `${PLACEHOLDER_IMG}${encodeURIComponent(place.location)}`;
         placeCard.innerHTML = `
             <img src="${imageSrc}" alt="${place.location}" class="w-full h-24 object-cover">
             <div class="p-2">
@@ -65,7 +68,7 @@ function showPlaceDetail(place) {
     const detailCoordinates = document.getElementById("detail-coordinates");
 
     if (detailImage && detailName && detailDescription && detailCoordinates && placeDetail) {
-        detailImage.src = place.image_url ? `${API_BASE_URL}/${place.image_url}` : `${PLACEHOLDER_IMG}${encodeURIComponent(place.location)}`;
+        detailImage.src = (place.image_url && typeof place.image_url === 'string') ? `${API_BASE_URL}/${place.image_url}` : `${PLACEHOLDER_IMG}${encodeURIComponent(place.location)}`;
         detailName.textContent = place.location;
         detailDescription.textContent = place.description;
         detailCoordinates.textContent = `Latitude: ${place.latitude}, Longitude: ${place.longitude}`;
@@ -103,6 +106,7 @@ if (backBtn) {
 }
 
 // Initial fetch of all places on page load
+// Defensive: Wait for DOMContentLoaded if needed in future SPA
 fetchPlaces('all');
 
 /**
@@ -115,7 +119,7 @@ if (searchInput) {
     searchInput.addEventListener("input", (e) => {
         const searchTerm = e.target.value.toLowerCase();
         const filteredPlaces = places.filter(place => 
-            place.location.toLowerCase().includes(searchTerm)
+            place.location && place.location.toLowerCase().includes(searchTerm)
         );
         renderPlaces(filteredPlaces);
     });

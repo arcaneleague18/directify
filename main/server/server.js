@@ -8,8 +8,30 @@ const port = 3000;
 app.use(express.json());
 app.use(cors()); // Enable CORS for all routes
 
+// Security headers for basic hardening (does not replace a full-featured helmet setup)
+app.use((req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  next();
+});
+
 // Serve static files from the public directory (where index.html will be)
-app.use(express.static(path.join(__dirname, 'public')));
+// Add basic caching headers for static assets in production
+app.use(express.static(path.join(__dirname, 'public'), {
+  setHeaders: (res, filePath) => {
+    if (process.env.NODE_ENV === 'production') {
+      // Cache static assets for 30 days in production
+      if (/(\.js|\.css|\.png|\.jpg|\.jpeg|\.svg|\.ico)$/.test(filePath)) {
+        res.setHeader('Cache-Control', 'public, max-age=2592000');
+      } else {
+        res.setHeader('Cache-Control', 'no-cache');
+      }
+    } else {
+      res.setHeader('Cache-Control', 'no-cache');
+    }
+  }
+}));
 
 /**
  * PostgreSQL connection configuration
